@@ -11,12 +11,47 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    signingConfigs {
+
+        release {
+            storeFile file('ssss.jks')
+            storePassword ''
+            keyAlias ''
+            keyPassword ''
+        }
+        debug {
+            storeFile file('ssss.jks')
+            storePassword ''
+            keyAlias ''
+            keyPassword ''
+        }
+    }
+
     buildTypes {
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+    productFlavors {
+        carrey_channel {
+            manifestPlaceholders = [channel: 'cccc']
+
+        }
+    }
+
 }
 
 dependencies {
